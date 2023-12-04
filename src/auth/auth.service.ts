@@ -29,7 +29,7 @@ export class AuthService {
       const accessToken = await this.jwtService.sign(payload); // 자동으로 payload와 secret을 합쳐서 토큰을 생성해준다
       return { accessToken };
     } else {
-      throw new UnauthorizedException('login failed');
+      throw new UnauthorizedException('로그인을 실패했습니다.');
     }
   }
 }
