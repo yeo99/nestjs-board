@@ -7,7 +7,11 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const serverConfig = config.get('server');
   const port = serverConfig.port;
-  app.enableCors();
+  app.enableCors({
+    origin:['http://localhost:3000'],
+    credentials: true,
+    exposedHeaders: ['Authorization'],
+  });
   await app.listen(port);
   Logger.log(`Application running on port ${port}`);
 }
