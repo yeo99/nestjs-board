@@ -19,8 +19,8 @@ const swaggerCustomOptions: SwaggerCustomOptions = {
  */
 export function setupSwagger(app: INestApplication): void {
     const options = new DocumentBuilder()
-        .setTitle('NestJS Test API Docs')
-        .setDescription('NestJS Test API description')
+        .setTitle('일기장 프로젝트 API 명세서')
+        .setDescription('정보보호 응용실습 팀프로젝트 5조')
         .setVersion('1.0.0')
         /**
          * JWT 토큰 설정
