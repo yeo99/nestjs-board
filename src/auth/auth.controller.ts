@@ -12,7 +12,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { GetUser } from './get-user.decorator';
 import { User } from './user.entity';
 // swagger
-import { ApiTags, ApiOperation, ApiResponse, ApiParam, ApiProperty, ApiCreatedResponse, ApiBody, ApiInternalServerErrorResponse } from '@nestjs/swagger';
+import { ApiTags, ApiOperation, ApiResponse, ApiParam, ApiProperty, ApiCreatedResponse, ApiBody, ApiInternalServerErrorResponse, ApiAcceptedResponse, ApiOkResponse, ApiUnauthorizedResponse, ApiBadRequestResponse } from '@nestjs/swagger';
 
 @ApiTags('회원 관련 API')
 @Controller('auth')
@@ -28,7 +28,9 @@ export class AuthController {
   })
   @ApiInternalServerErrorResponse({
     description: '중복 아이디 혹은 서버 오류',
-    schema: {}
+  })
+  @ApiBadRequestResponse({
+    description: '아이디는 3글자 이상, 비밀번호는 4글자 이상이여야 함'
   })
   @Post('/signup')
   signUp(
@@ -38,6 +40,15 @@ export class AuthController {
   }
 
   @ApiOperation({ summary: '회원 로그인 API', description: '회원 로그인입니다.' })
+  @ApiOkResponse({
+    description: '정상적으로 로그인 했다면 JWT 토큰을 객체에 담아 accessToken Key로 전송'
+  })
+  @ApiUnauthorizedResponse({
+    description: '로그인 아이디 혹은 비밀번호 틀림'
+  })
+  @ApiBadRequestResponse({
+    description: '아이디는 3글자 이상, 비밀번호는 4글자 이상이여야 함'
+  })
   @Post('/signin')
   signin(
     @Body(ValidationPipe) authCredentialsDto: AuthCredentialsDto,
