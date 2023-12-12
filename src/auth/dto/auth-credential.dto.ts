@@ -15,7 +15,6 @@ export class AuthCredentialsDto {
     example: 'user1234',
     description: 'password'
   })
-  @ApiProperty()
   @IsString()
   @MinLength(4)
   @MaxLength(20)
