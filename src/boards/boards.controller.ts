@@ -20,7 +20,10 @@ import { BoardStatusValidationPipe } from './pipes/board-status-validation.pipe'
 import { AuthGuard } from '@nestjs/passport';
 import { User } from 'src/auth/user.entity';
 import { GetUser } from 'src/auth/get-user.decorator';
+// swagger
+import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger'
 
+@ApiTags('게시글 API')
 @Controller('boards')
 @UseGuards(AuthGuard())
 export class BoardsController {
@@ -31,6 +34,7 @@ export class BoardsController {
   // getllAllBoard(): Board[] {
   //   return this.boardsService.getALlBoards();
   // }
+  @ApiOperation({ summary: '전체 게시글 불러오기' })
   @Get('/')
   getALLBoard(@GetUser() user: User): Promise<Board[]> {
     this.logger.verbose(`User ${user.username} trying to get all boards`);

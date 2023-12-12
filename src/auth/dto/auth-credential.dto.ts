@@ -1,11 +1,21 @@
 import { IsString, Matches, MaxLength, MinLength } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
 
 export class AuthCredentialsDto {
+  @ApiProperty({
+    example: 'user',
+    description: 'username'
+  })
   @IsString()
   @MinLength(3)
   @MaxLength(20)
   username: string;
 
+  @ApiProperty({
+    example: 'user1234',
+    description: 'password'
+  })
+  @ApiProperty()
   @IsString()
   @MinLength(4)
   @MaxLength(20)
