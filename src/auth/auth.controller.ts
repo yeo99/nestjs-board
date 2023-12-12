@@ -12,7 +12,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { GetUser } from './get-user.decorator';
 import { User } from './user.entity';
 // swagger
-import { ApiTags, ApiOperation, ApiResponse, ApiParam, ApiProperty, ApiCreatedResponse, ApiBody, ApiInternalServerErrorResponse, ApiAcceptedResponse, ApiOkResponse, ApiUnauthorizedResponse, ApiBadRequestResponse } from '@nestjs/swagger';
+import { ApiTags, ApiOperation, ApiCreatedResponse, ApiInternalServerErrorResponse, ApiOkResponse, ApiUnauthorizedResponse, ApiBadRequestResponse } from '@nestjs/swagger';
 
 @ApiTags('회원 관련 API')
 @Controller('auth')
